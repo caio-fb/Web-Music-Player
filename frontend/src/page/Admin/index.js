@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import HeaderAdmin from "../../components/headerAdmin";
 
 function Admin(){

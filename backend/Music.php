@@ -22,18 +22,19 @@
 		}
 
 		public function register() {
-			 if (empty($this->nome)) {
-		        throw new Exception('O campo nome não pode estar vazio.');
-		    }
-
-			$query = "insert into musicas (nome, artista, genero, link, curtida)values(:nome, :artista, :genero, :link, :curtida)";
-			$stmt = $this->db->prepare($query);
-			$stmt->bindValue(':nome', $this->__get('nome'));
-			$stmt->bindValue(':artista', $this->__get('artista'));
-			$stmt->bindValue(':genero', $this->__get('genero')); 
-			$stmt->bindValue(':link', $this->__get('link')); 
-			$stmt->bindValue(':curtida', $this->__get('curtida')); 
-			$result = $stmt->execute();
+			$nome = $this->__get('nome');
+			if(!empty($nome))
+			{
+			    $query = "insert into musicas (nome, artista, genero, link, curtida)values(:nome, :artista, :genero, :link, :curtida)";
+				$stmt = $this->db->prepare($query);
+				$stmt->bindValue(':nome', $nome);
+				$stmt->bindValue(':artista', $this->__get('artista'));
+				$stmt->bindValue(':genero', $this->__get('genero')); 
+				$stmt->bindValue(':link', $this->__get('link')); 
+				$stmt->bindValue(':curtida', $this->__get('curtida')); 
+				$result = $stmt->execute();
+			}
+			
 		}
 	};
 
