@@ -6,24 +6,25 @@ import { useState, useEffect } from "react";
 
 function Header(){
     const [search, setSearch] = useState();
+    const [searchResult, setSearchResult] = useState([]);
 
     useEffect(()=>{
-        console.log(search);
-    }, [setSearch]);
+        buscaMusica();
+    }, [search]);
 
-    const buscaMusica = (e) => {
-        e.preventDefault();
-      
+    const buscaMusica = () => {
+    
         const formData = new URLSearchParams();
         formData.append('search', search);
-      
+    
         fetch('http://localhost:9090/SearchMusic.php', {
           method: 'POST',
           body: formData,
         })
           .then((response) => response.json())
           .then((data) => {
-            console.log(data);
+            setSearchResult(data);
+            console.log(data)
           })
           .catch((error) => {
             console.log(error);
@@ -40,7 +41,7 @@ function Header(){
                     <div className="d-flex">
                         <form className="d-flex m-3" >
                             <input className=" me-2 rounded-5 text-center px-5" type="search" placeholder="Search" 
-                                onChange={(e)=>{setSearch(e)}}
+                                onChange={(e)=>{setSearch(e.target.value)}}
                             />                        
                         </form>
                         <div className="p-1 bg-light-gray rounded-circle px-2">
@@ -48,7 +49,18 @@ function Header(){
                         </div>                        
                     </div>                    
                 </div>
-                </nav>
+            </nav>
+            {searchResult.length > 0 && search && (
+                <div>
+                    <ul>
+                        {searchResult.map((result, index) => (
+                            <li key={index}>{result[0]} - {result[1]} {result[2] == 1 && (<a>like</a>)}</li>
+                        ))}
+                    </ul>
+                </div>
+            ) 
+
+        }
         </header>
     );
 }
