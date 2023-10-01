@@ -33,9 +33,7 @@
 				$stmt->bindValue(':link', $this->__get('link')); 
 				$stmt->bindValue(':curtida', $this->__get('curtida')); 
 				$result = $stmt->execute();
-			}
-			
+			}			
 		}
 	};
-
 ?>

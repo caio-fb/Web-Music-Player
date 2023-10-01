@@ -24,7 +24,6 @@ function Header(){
           .then((response) => response.json())
           .then((data) => {
             setSearchResult(data);
-            console.log(data)
           })
           .catch((error) => {
             console.log(error);

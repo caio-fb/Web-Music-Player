@@ -10,6 +10,13 @@ function Admin(){
     const [genero, setGenero] = useState('');
     const [link, setLink] = useState('');
 
+    const resetForm = () => {
+        setNome('');
+        setArtista('');
+        setGenero('');
+        setLink('');
+    };
+
     const enviaMusica = (e) => {
         e.preventDefault();
       
@@ -24,8 +31,10 @@ function Admin(){
           body: formData,
         })
           .then((response) => response.json())
-          .then((data) => {
+          .then((data) => {            
             console.log(data);
+            resetForm(); // Redefine os valores dos campos após o envio do formulário
+            window.location.href("/admin");
           })
           .catch((error) => {
             console.log(error);
@@ -49,9 +58,9 @@ function Admin(){
                         <h3>Gênero</h3>
                         <select name='genero' value={genero} onChange={(e) => setGenero(e.target.value)}>
                             <option>Escolha um gênero</option>
-                            {generos.map((genero)=>{
+                            {generos.map((genero, index)=>{
                                 return(
-                                    <option value={genero}>
+                                    <option key={index} value={genero}>
                                         {genero}
                                     </option>
                                 )
