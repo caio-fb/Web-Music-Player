@@ -5,7 +5,7 @@
 	// Permite que o cliente faça requisições POST
 	header('Access-Control-Allow-Methods: POST');
 
-	require_once "Connection.php";
+	require_once "../Connection.php";
 
 	$search = $_POST['search'];
 	$musicas = [];

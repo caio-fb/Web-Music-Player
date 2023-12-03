@@ -1,5 +1,6 @@
 import Logo from "../../assets/icons/WebPlayer.svg";
 import Face from "../../assets/icons/face.svg";
+import MusicDropdown from "../MusicDropdown";
 
 
 import { useState, useEffect } from "react";
@@ -17,7 +18,7 @@ function Header(){
         const formData = new URLSearchParams();
         formData.append('search', search);
     
-        fetch('http://localhost:9090/SearchMusic.php', {
+        fetch('http://localhost:9090/Music/SearchMusic.php', {
           method: 'POST',
           body: formData,
         })
@@ -29,6 +30,10 @@ function Header(){
             console.log(error);
           });
       };
+
+      const addMusicInPlaylist = (nome, artista) => {
+
+      }
     return(
         <header className="bg-orange">
             <nav className="navbar">
@@ -53,13 +58,18 @@ function Header(){
                 <div>
                     <ul>
                         {searchResult.map((result, index) => (
-                            <li key={index}>{result[0]} - {result[1]} {result[2] == 1 && (<a>like</a>)}</li>
+                            <li key={index}>
+                                {result[0]} - {result[1]} {result[2] == 1 && (<a>like</a>)}
+                                <span >
+                                    <MusicDropdown nome={result[0]} artista={result[1]}/>
+                                </span>                    
+                            </li>
                         ))}
                     </ul>
                 </div>
-            ) 
+                ) 
 
-        }
+            }   
         </header>
     );
 }

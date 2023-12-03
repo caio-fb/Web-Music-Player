@@ -10,7 +10,7 @@ function Home(){
         const formData = new URLSearchParams();
         formData.append('nome', nome);
     
-        fetch('http://localhost:9090/RegisterPlaylist.php', {
+        fetch('http://localhost:9090/Playlist/RegisterPlaylist.php', {
           method: 'POST',
           body: formData,
         })
@@ -22,7 +22,7 @@ function Home(){
     }
 
     const viewPlaylists = ()=>{
-      fetch(`http://localhost:9090/ViewPlaylist.php`)
+      fetch(`http://localhost:9090/Playlist/ViewPlaylist.php`)
         .then((response) => 
           response.json()
         )
@@ -33,7 +33,7 @@ function Home(){
 
     useEffect(()=>{
       viewPlaylists();
-    });
+    }, []);
     
 
     return(

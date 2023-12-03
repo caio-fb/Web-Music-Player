@@ -26,7 +26,7 @@ function Admin(){
         formData.append('genero', genero);
         formData.append('link', link);
       
-        fetch('http://localhost:9090/RegisterMusic.php', {
+        fetch('http://localhost:9090/Music/RegisterMusic.php', {
           method: 'POST',
           body: formData,
         })
