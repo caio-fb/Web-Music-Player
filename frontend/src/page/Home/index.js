@@ -22,7 +22,7 @@ function Home(){
     }
 
     const viewPlaylists = ()=>{
-      fetch(`http://localhost:9090/Playlist/ViewPlaylist.php`)
+      fetch(`http://localhost:9090/Playlist/ViewAllPlaylists.php`)
         .then((response) => 
           response.json()
         )

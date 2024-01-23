@@ -9,4 +9,4 @@
 	$playlist = new Playlist($nome);
 	$playlist->register();
 	
-	?>
+?>

@@ -2,11 +2,13 @@
 	require_once "../Connection.php";
 
 	class Playlist_Music {
-		private $nome;
+		private $musica_id;
+		private $playlist_id;
+		private $db;
 
-		public function __construct($idMusic, $idPlaylist){
-			$this->idMusic = $idMusic;
-			$this->idPlaylist = $idPlaylist;
+		public function __construct($musica_id, $playlist_id){
+			$this->musica_id = $musica_id;
+			$this->playlist_id = $playlist_id;
 			$this->db = Connection::getDb();
 		}
 
@@ -15,14 +17,14 @@
 		}
 
 		public function register() {
-			$idMusic = $this->__get('idMusic');
-			$idPlaylist = $this->__get('idPlaylist');
-			if(!empty($idMusic) && !empty($idPlaylist))
+			$musica_id = $this->__get('musica_id');
+			$playlist_id = $this->__get('playlist_id');
+			if(!empty($musica_id) && !empty($playlist_id))
 			{
-			    $query = "insert into playlist_musica (idMusic, idPlaylist)values(:idMusic, :idPlaylist)";
+			    $query = "insert into playlist_musica (musica_id, playlist_id)values(:musica_id, :playlist_id)";
 				$stmt = $this->db->prepare($query);
-				$stmt->bindValue(':idMusic', $idMusic); 
-				$stmt->bindValue(':idPlaylist', $idPlaylist); 
+				$stmt->bindValue(':musica_id', $musica_id); 
+				$stmt->bindValue(':playlist_id', $playlist_id); 
 				$result = $stmt->execute();
 			}
 			

@@ -8,25 +8,24 @@
 	require_once "../Connection.php";
 
 	$search = $_POST['search'];
-	$musicas = [];
+	$playlists = [];
 
 	$db = Connection::getDb();
-	$query = "SELECT musica_id, nome, artista FROM musicas WHERE artista LIKE :search OR nome LIKE :search";
+	$query = "SELECT playlist_id, nome  FROM playlist WHERE nome LIKE :search"; 
 	$stmt = $db->prepare($query);
 	$stmt->bindValue(":search", "%" . $search . "%");
 	$stmt->execute();
 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);	
 
 	foreach ($result as $row) {
-		$musica_id = $row['musica_id'];
+		$playlist_id = $row["playlist_id"];
 	    $nome = $row['nome'];
-	    $artista = $row['artista'];
-	    
 
-	    array_push($musicas, [$musica_id, $nome, $artista]);
+	    array_push($playlists, [$playlist_id, $nome]);
 	}
 
 	header('Content-Type: application/json');
-	echo json_encode($musicas);
+	echo json_encode($playlists);
+
 
 ?>

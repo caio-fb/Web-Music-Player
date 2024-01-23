@@ -31,9 +31,6 @@ function Header(){
           });
       };
 
-      const addMusicInPlaylist = (nome, artista) => {
-
-      }
     return(
         <header className="bg-orange">
             <nav className="navbar">
@@ -59,9 +56,9 @@ function Header(){
                     <ul>
                         {searchResult.map((result, index) => (
                             <li key={index}>
-                                {result[0]} - {result[1]} {result[2] == 1 && (<a>like</a>)}
+                                {result[1]} - {result[2]} 
                                 <span >
-                                    <MusicDropdown nome={result[0]} artista={result[1]}/>
+                                    <MusicDropdown musica_id={result[0]}  />
                                 </span>                    
                             </li>
                         ))}
